@@ -13,15 +13,17 @@
 plot_cp <- function(dat, est, iso_code, CI = 95) {
   if(!"iso" %in% colnames(est)) {
     stop('Input data file dat and estimates file est must contain variable iso.')}
-  if(!"year" %in% colnames(est)) {
+  if(!"year" %in% colnames(dat)) {
     stop('Input data file dat must contain variable year and cp.')}
-  if(!"cp" %in% colnames(est)) {
+  if(!"cp" %in% colnames(dat)) {
     stop('Input data file dat must contain variable year and cp.')}
   if(!"iso" %in% colnames(dat)) {
     stop('Input data file dat and estimates file est must contain variable iso.')}
   if(!is.numeric(dat$cp)) {
     stop('Error in plot_cp(dat_bug, est, iso_code = 4). 
          Input cp in data file dat must be numeric.')}
+  if(!is.character(CI = 80 | 95 | NA)) {
+    stop('Error in plot_cp(dat, est, iso_code = 4, CI = 99): CI must be 80, 95, or NA.')}
   est <- est %>%
     filter(iso == iso_code)
   dat <- dat %>%
